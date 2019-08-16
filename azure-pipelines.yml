@@ -11,7 +11,6 @@ variables:
 stages:
 - stage: 'Build'
   jobs:
-
   - job: 'Artifacts'
     pool:
       vmImage: 'ubuntu-latest'
@@ -22,10 +21,8 @@ stages:
       inputs:
         artifactName: artifacts
         targetPath: $(Build.SourcesDirectory)
-
 - stage: 'Release'
   jobs:
-
   - job: 'Templates'
     pool:
       vmImage: 'ubuntu-latest'
@@ -57,7 +54,6 @@ stages:
         overrideParameters: -storageAccountName $(storageAccountName) -componentName $(componentName) -siteName $(siteName) -keyVaultName $(keyVaultName)
         deploymentMode: Incremental
         deploymentName: Microsoft.AzureDevOps
-
   - job: 'Functions'
     pool:
       vmImage: 'ubuntu-latest'
