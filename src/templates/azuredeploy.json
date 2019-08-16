@@ -100,7 +100,8 @@
                         }
                     ]
                 },
-                "httpsOnly": true
+                "httpsOnly": true,
+                "reserved": true
             },
             "dependsOn": [
                 "[variables('storageAccounts')['name']]",
