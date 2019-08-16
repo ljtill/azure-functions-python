@@ -8,9 +8,6 @@
         "componentName": {
             "type": "string"
         },
-        "serverfarmName": {
-            "type": "string"
-        },
         "siteName": {
             "type": "string"
         },
@@ -22,7 +19,6 @@
         "apiVersions": {
             "storageAccounts": "2019-04-01",
             "components": "2015-05-01",
-            "serverfarms": "2018-02-01",
             "sites": "2018-02-01",
             "keyVaults": "2018-02-14"
         },
@@ -32,10 +28,6 @@
         },
         "components": {
             "name": "[parameters('componentName')]"
-        },
-        "serverfarms": {
-            "name": "[parameters('serverfarmName')]",
-            "id": "[concat(resourceGroup().id, '/providers/', 'Microsoft.Web/serverfarms/', parameters('serverfarmName'))]"
         },
         "sites": {
             "name": "[parameters('siteName')]"
@@ -70,18 +62,6 @@
             }
         },
         {
-            "comments": "Server Farm",
-            "type": "Microsoft.Web/serverfarms",
-            "name": "[variables('serverfarms')['name']]",
-            "apiVersion": "[variables('apiVersions')['serverfarms']]",
-            "location": "[resourceGroup().location]",
-            "properties": {},
-            "sku": {
-                "name": "Y1",
-                "tier": "Dynamic"
-            }
-        },
-        {
             "comments": "Function App",
             "type": "Microsoft.Web/sites",
             "name": "[variables('sites')['name']]",
@@ -92,7 +72,6 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "serverFarmId": "[variables('serverfarms')['id']]",
                 "siteConfig": {
                     "appSettings": [
                         {
@@ -125,8 +104,7 @@
             },
             "dependsOn": [
                 "[variables('storageAccounts')['name']]",
-                "[variables('components')['name']]",
-                "[variables('serverfarms')['name']]"
+                "[variables('components')['name']]"
             ]
         },
         {
