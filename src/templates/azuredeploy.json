@@ -8,6 +8,9 @@
         "componentName": {
             "type": "string"
         },
+        "serverfarmName": {
+            "type": "string"
+        },
         "siteName": {
             "type": "string"
         },
@@ -19,6 +22,7 @@
         "apiVersions": {
             "storageAccounts": "2019-04-01",
             "components": "2015-05-01",
+            "serverfarms": "2018-02-01",
             "sites": "2018-02-01",
             "keyVaults": "2018-02-14"
         },
@@ -28,6 +32,10 @@
         },
         "components": {
             "name": "[parameters('componentName')]"
+        },
+        "serverfarms": {
+            "name": "[parameters('serverfarmName')]",
+            "id": "[concat(resourceGroup().id, '/providers/', 'Microsoft.Web/serverfarms/', parameters('serverfarmName'))]"
         },
         "sites": {
             "name": "[parameters('siteName')]"
@@ -59,6 +67,20 @@
             "properties": {
                 "Application_Type": "web",
                 "ApplicationId": "[variables('sites')['name']]"
+            }
+        },
+        {
+            "comments": "Server Farm",
+            "type": "Microsoft.Web/serverfarms",
+            "name": "[variables('serverfarms')['name']]",
+            "apiVersion": "[variables('apiVersions')['serverfarms']]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "reserved": true
+            },
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic"
             }
         },
         {
