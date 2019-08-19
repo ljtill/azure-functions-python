@@ -75,7 +75,9 @@
             "name": "[variables('serverfarms')['name']]",
             "apiVersion": "[variables('apiVersions')['serverfarms']]",
             "location": "[resourceGroup().location]",
-            "properties": {},
+            "properties": {
+                "reserved": true
+            },
             "sku": {
                 "name": "Y1",
                 "tier": "Dynamic"
