@@ -2,8 +2,8 @@
 
 main() {
     docker rm $(docker ps -a -q)
-    docker rmi ltill/azure-functions/python
-    docker build -t ltill/azure-functions/python .
+    docker rmi username/azure-functions/python
+    docker build -t username/azure-functions/python .
 }
 
 main
