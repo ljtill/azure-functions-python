@@ -41,7 +41,7 @@ stages:
         resourceGroupName: $(resourceGroupName)
         location: $(locationName)
         csmFile: '$(System.DefaultWorkingDirectory)/src/templates/azuredeploy.json'
-        overrideParameters: -storageAccountName $(storageAccountName) -componentName $(componentName) -siteName $(siteName) -keyVaultName $(keyVaultName)
+        overrideParameters: -storageAccountName $(storageAccountName) -componentName $(componentName) -serverfarmName $(serverfarmName) -siteName $(siteName) -keyVaultName $(keyVaultName)
         deploymentMode: Validation
     - task: AzureResourceGroupDeployment@2
       displayName: 'Templates : Incremental'
@@ -51,7 +51,7 @@ stages:
         resourceGroupName: $(resourceGroupName)
         location: $(locationName)
         csmFile: '$(System.DefaultWorkingDirectory)/src/templates/azuredeploy.json'
-        overrideParameters: -storageAccountName $(storageAccountName) -componentName $(componentName) -siteName $(siteName) -keyVaultName $(keyVaultName)
+        overrideParameters: -storageAccountName $(storageAccountName) -componentName $(componentName) -serverfarmName $(serverfarmName) -siteName $(siteName) -keyVaultName $(keyVaultName)
         deploymentMode: Incremental
         deploymentName: Microsoft.AzureDevOps
   - job: 'Functions'
